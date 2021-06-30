@@ -1,0 +1,12 @@
+<svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="27.5" cy="27.5" r="27.5" fill="white"/>
+<circle cx="28" cy="27" r="10" fill="#F7C044"/>
+<rect x="3" y="25.0357" width="10.2679" height="4.01786" rx="2.00893" fill="#F7C044"/>
+<rect width="10.2679" height="4.01787" rx="2.00893" transform="matrix(0.707109 -0.707105 0.707109 0.707105 37.643 15.7783)" fill="#F7C044"/>
+<rect width="10.2679" height="4.01787" rx="2.00893" transform="matrix(0.707109 0.707105 -0.707109 0.707105 11.0196 8.51785)" fill="#F7C044"/>
+<rect width="10.2679" height="4.01787" rx="2.00893" transform="matrix(0.707109 -0.707105 0.707109 0.707105 9.51783 43.9033)" fill="#F7C044"/>
+<rect width="10.2679" height="4.01787" rx="2.00893" transform="matrix(0.707109 0.707105 -0.707109 0.707105 39.1448 36.6429)" fill="#F7C044"/>
+<rect x="25.9466" y="41.7321" width="4.01789" height="10.2679" rx="2.00894" fill="#F7C044"/>
+<rect x="26.036" y="2" width="4.01788" height="10.2679" rx="2.00894" fill="#F7C044"/>
+<rect x="42.7321" y="25.0357" width="10.2679" height="4.01786" rx="2.00893" fill="#F7C044"/>
+</svg>
