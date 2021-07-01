@@ -1,9 +1,24 @@
 import React from 'react'
+import { useConversion } from '../../../hooks/useConversion'
+
 import { Card } from '../../elements/Card'
 
-import { TodayDetails } from '../../../types/weather'
-
 import { Upside, Sun, SunTimes, Condition } from './styles'
+
+type Details = {
+  feelsLike: number
+  sunrise: number
+  sunset: number
+  todayMax: number
+  todayMin: number
+  wind: number
+  humidity: number
+  dewPoint: number
+  pressure: number
+  visibility: number
+  moonPhase: number
+  name: string
+}
 
 export function Details({
   feelsLike,
@@ -18,16 +33,19 @@ export function Details({
   visibility,
   moonPhase,
   name
-}: TodayDetails) {
+}: Details) {
   const details = [
     {
-      condition: 'Max/mín',
-      value: `${todayMax}°/${todayMin}°`,
+      condition: 'Temperatura',
+      value: `${useConversion(todayMax, 'temp')}/${useConversion(
+        todayMin,
+        'temp'
+      )}`,
       src: '/thermometer.svg'
     },
     {
       condition: 'Vento',
-      value: `${wind}km/h`,
+      value: useConversion(wind, 'speed'),
       src: '/wind.svg'
     },
     {
@@ -37,17 +55,17 @@ export function Details({
     },
     {
       condition: 'Ponto de orvalho',
-      value: `${dewPoint}°`,
+      value: useConversion(dewPoint, 'temp'),
       src: '/dew-point.svg'
     },
     {
       condition: 'Pressão',
-      value: `${pressure}mb`,
+      value: useConversion(pressure, 'pressure'),
       src: '/gauge.svg'
     },
     {
       condition: 'Visibilidade',
-      value: `${visibility}km`,
+      value: useConversion(visibility, 'length'),
       src: '/eye.svg'
     },
     {
@@ -62,7 +80,7 @@ export function Details({
       <h2>O clima em {name} hoje</h2>
       <Upside>
         <div>
-          <span>{feelsLike}°</span>
+          <span>{useConversion(feelsLike, 'temp')}</span>
           <p>Sensação térmica</p>
         </div>
 

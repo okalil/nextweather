@@ -1,10 +1,18 @@
 import React from 'react'
 
-import { CurrentWeather } from '../../../types/weather'
+import { useConversion } from '../../../hooks/useConversion'
 
 import { Container, Conditions } from './styles'
 
-type WeatherNowProps = CurrentWeather
+type WeatherNowProps = {
+  temp: number
+  weatherDescription: string
+  icon: string
+  todayMax: number
+  todayMin: number
+  todayProb: number
+  name: string
+}
 
 export function WeatherNow({
   temp,
@@ -22,7 +30,7 @@ export function WeatherNow({
 
       <Conditions>
         <div>
-          <span>{temp}°</span>
+          <span>{useConversion(temp, 'temp')}</span>
           <p>{weatherDescription}</p>
         </div>
         <div>
@@ -31,7 +39,7 @@ export function WeatherNow({
             alt="Tempo agora"
           />
           <span>
-            {todayMax}°/{todayMin}°
+            {useConversion(todayMax, 'temp')}/{useConversion(todayMin, 'temp')}
           </span>
         </div>
       </Conditions>

@@ -1,8 +1,8 @@
 export function provideIconCodeById(
   id: number,
-  time: number,
-  sunrise: number,
-  sunset: number
+  time: number | string,
+  sunrise: number | string,
+  sunset: number | string
 ) {
   const shift = time > sunrise && time < sunset ? 'd' : 'n'
 
@@ -47,5 +47,5 @@ export function provideIconCodeById(
     900: 'u00'
   }
 
-  return `${codes[id]}${shift}`
+  return codes[id] + shift
 }

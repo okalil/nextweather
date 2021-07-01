@@ -19,7 +19,7 @@ const Today = ({ currentWeather, dailyForecast, todayDetails, name }) => {
   return (
     <div>
       <Head>
-        <title>Tempo | {name}</title>
+        <title>Tempo hoje | {name}</title>
       </Head>
 
       <Container>
@@ -65,11 +65,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const { current, daily } = data
 
-  const todayMax = daily[0].temp.max.toFixed()
-  const todayMin = daily[0].temp.min.toFixed()
+  const todayMax = daily[0].temp.max
+  const todayMin = daily[0].temp.min
 
   const currentWeather = {
-    temp: current.temp.toFixed(),
+    temp: current.temp,
     weatherDescription: current.weather[0].description,
     icon: provideIconCodeById(
       current.weather[0].id,
@@ -84,16 +84,16 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 
   const todayDetails = {
-    feelsLike: current.feels_like.toFixed(),
+    feelsLike: current.feels_like,
     sunrise: convertTimestampToDate(current.sunrise, 'time'),
     sunset: convertTimestampToDate(current.sunset, 'time'),
     todayMax,
     todayMin,
-    wind: (current.wind_speed * 3.6).toFixed(),
+    wind: current.wind_speed,
     humidity: current.humidity,
-    dewPoint: current.dew_point.toFixed(),
+    dewPoint: current.dew_point,
     pressure: current.pressure,
-    visibility: current.visibility / 1000,
+    visibility: current.visibility,
     moonPhase: provideMoonPhaseByFraction(daily[0].moon_phase),
     name
   }
@@ -111,8 +111,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
       ) => {
         return {
           dt: i > 0 ? convertTimestampToDate(day.dt, 'date') : 'Hoje',
-          tempMax: day.temp.max.toFixed(),
-          tempMin: day.temp.min.toFixed(),
+          tempMax: day.temp.max,
+          tempMin: day.temp.min,
           icon: provideIconCodeById(
             day.weather[0].id,
             convertTimestampToDate(current.dt, 'hours'),
