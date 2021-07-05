@@ -33,7 +33,7 @@ export function provideIconCodeById(
     621: 's01',
     622: 's02',
     623: 's06',
-    700: 'a01',
+    701: 'a01',
     711: 'a02',
     721: 'a03',
     731: 'a04',

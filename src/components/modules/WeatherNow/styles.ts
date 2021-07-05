@@ -1,47 +1,102 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Card } from '../../elements/Card'
 
-export const Container = styled(Card)`
+const flex = css`
+  display: flex;
+`
+
+const Container = styled(Card)`
   background: ${({ theme }) => theme.colors.currentCardBackground};
   color: ${({ theme }) => theme.colors.textSecondary};
 
-  > p {
-    opacity: 0.75;
-    padding-bottom: 0.5rem;
+  ${flex}
+  flex-direction: column;
+  gap: 0.5rem;
+`
+const UpsideConditions = styled.div`
+  ${flex}
+  justify-content: space-between;
+`
+
+const Temperature = styled.div`
+  > span {
+    line-height: 3.5rem;
+    font-size: 3.5rem;
+    font-weight: 500;
   }
 
-  > span {
-    font-size: 0.875rem;
+  p span {
+    font-weight: 600;
   }
 `
-export const Conditions = styled.div`
+
+const Weather = styled.div`
+  text-align: right;
+
+  img {
+    width: 75px;
+    margin: -10px 0 -16px;
+  }
+
+  p {
+    font-weight: 600;
+  }
+`
+
+const ConditionItem = styled.li`
+  ${flex}
+  justify-content: space-between;
+
+  list-style: none;
+  border-top: 1px solid ${({ theme }) => theme.colors.generalBackground};
+  padding: 0.75rem 0;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+`
+
+const Button = styled.button`
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  background: ${({ theme }) => theme.colors.textTertiary};
+  box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.colors.generalBackground};
+  border: 0;
+  border-radius: 10px;
+  padding: 0.5rem;
+
+  display: block;
+  margin: 0 auto;
+`
+
+const ButtonItem = styled.li`
+  list-style: none;
+  border-top: 1px solid ${({ theme }) => theme.colors.generalBackground};
+  padding-top: 0.75rem;
+`
+
+const ShowDetails = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0.25rem 0;
+  align-items: center;
 
-  div:first-child {
-    span {
-      line-height: 3.5rem;
-      font-size: 3.5rem;
-      font-weight: 500;
-    }
-
-    p {
-      font-weight: 600;
-      text-transform: capitalize;
-    }
+  p {
+    font-weight: 500;
   }
 
-  div:last-child {
-    img {
-      width: 50px;
-      height: 50px;
-    }
-
-    span {
-      display: block;
-      font-size: 1rem;
-      font-weight: 700;
-    }
+  img {
+    width: 27px;
+    height: 27px;
   }
 `
+
+export {
+  Container,
+  UpsideConditions,
+  Temperature,
+  Weather,
+  Button,
+  ButtonItem,
+  ConditionItem,
+  ShowDetails
+}

@@ -1,33 +1,32 @@
 import React from 'react'
-import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import { GetServerSideProps } from 'next'
 
 import { apiWeather } from '../../services/apiWeather'
 import { apiPlaces } from '../../services/apiPlaces'
 
 import { WeatherNow } from '../../components/modules/WeatherNow'
-import { Forecast } from '../../components/modules/Forecast'
+import { HourlyForecast } from '../../components/modules/HourlyForecast'
 import { Details } from '../../components/modules/Details'
 
 import { convertTimestampToDate } from '../../utils/convertTimestampToDate'
 import { provideIconCodeById } from '../../utils/provideIconCodeById'
 import { provideMoonPhaseByFraction } from '../../utils/provideMoonPhaseByFraction'
+import { calculateSunProgress } from '../../utils/calculateSunProgress'
 
 import { Container } from '../styles'
 
-const Today = ({ currentWeather, dailyForecast, todayDetails, name }) => {
+const Today = ({ currentWeather, hourlyForecast, todayDetails, name }) => {
   return (
-    <div>
+    <Container>
       <Head>
         <title>Tempo hoje | {name}</title>
       </Head>
 
-      <Container>
-        <WeatherNow {...currentWeather} />
-        <Forecast {...dailyForecast} />
-        <Details {...todayDetails} />
-      </Container>
-    </div>
+      <WeatherNow {...currentWeather} />
+      <HourlyForecast {...hourlyForecast} />
+      <Details {...todayDetails} />
+    </Container>
   )
 }
 
@@ -57,72 +56,80 @@ export const getServerSideProps: GetServerSideProps = async context => {
     params: {
       lat: geo.data.features[0].center[1],
       lon: geo.data.features[0].center[0],
-      exclude: 'minutely,hourly,alerts',
+      exclude: 'minutely,alerts',
       units: 'metric',
       lang: 'pt_br'
     }
   })
 
-  const { current, daily } = data
+  const { current, daily, hourly } = data
 
-  const todayMax = daily[0].temp.max
-  const todayMin = daily[0].temp.min
-
+  const description = current.weather[0].description
   const currentWeather = {
     temp: current.temp,
-    weatherDescription: current.weather[0].description,
+    feelsLike: current.feels_like,
+    weatherDescription:
+      description.charAt(0).toUpperCase() + description.slice(1),
     icon: provideIconCodeById(
       current.weather[0].id,
       convertTimestampToDate(current.dt, 'hours'),
       convertTimestampToDate(current.sunrise, 'hours'),
       convertTimestampToDate(current.sunset, 'hours')
     ),
-    todayMax,
-    todayMin,
-    todayProb: daily[0].pop.toFixed(),
+    wind: current.wind_speed,
+    humidity: current.humidity,
+    pressure: current.pressure,
+    dewPoint: current.dew_point,
+    uvi: current.uvi,
+    visibility: current.visibility,
+    name,
+    href: '/today'
+  }
+
+  const hourlyForecast = {
+    forecast: hourly
+      .slice(0, 14)
+      .filter((item, i: number) => i % 3 == 0)
+      .map(
+        (hour: {
+          dt: number
+          weather: { id: number }[]
+          temp: number
+          pop: number
+        }) => {
+          return {
+            dt: convertTimestampToDate(hour.dt, 'time'),
+            icon: provideIconCodeById(
+              hour.weather[0].id,
+              convertTimestampToDate(hour.dt, 'hours'),
+              convertTimestampToDate(current.sunrise, 'hours'),
+              convertTimestampToDate(current.sunset, 'hours')
+            ),
+            temp: hour.temp,
+            pop: hour.pop
+          }
+        }
+      ),
     name
   }
 
   const todayDetails = {
-    feelsLike: current.feels_like,
-    sunrise: convertTimestampToDate(current.sunrise, 'time'),
-    sunset: convertTimestampToDate(current.sunset, 'time'),
-    todayMax,
-    todayMin,
-    wind: current.wind_speed,
-    humidity: current.humidity,
-    dewPoint: current.dew_point,
-    pressure: current.pressure,
-    visibility: current.visibility,
-    moonPhase: provideMoonPhaseByFraction(daily[0].moon_phase),
-    name
-  }
-
-  const dailyForecast = {
-    forecast: daily.slice(0, 5).map(
-      (
-        day: {
-          dt: number
-          temp: { max: number; min: number }
-          weather: { id: number }[]
-          pop: number
-        },
-        i: number
-      ) => {
-        return {
-          dt: i > 0 ? convertTimestampToDate(day.dt, 'date') : 'Hoje',
-          tempMax: day.temp.max,
-          tempMin: day.temp.min,
-          icon: provideIconCodeById(
-            day.weather[0].id,
-            convertTimestampToDate(current.dt, 'hours'),
-            convertTimestampToDate(current.sunrise, 'hours'),
-            convertTimestampToDate(current.sunset, 'hours')
-          ),
-          prob: day.pop.toFixed()
-        }
-      }
+    progress: calculateSunProgress(
+      Number(convertTimestampToDate(current.dt, 'hours')),
+      Number(convertTimestampToDate(daily[0].sunrise, 'hours')),
+      Number(convertTimestampToDate(daily[0].sunset, 'hours'))
     ),
+    sunrise: convertTimestampToDate(daily[0].sunrise, 'time'),
+    sunset: convertTimestampToDate(daily[0].sunset, 'time'),
+    tempMax: daily[0].temp.max,
+    tempMin: daily[0].temp.min,
+    wind: daily[0].wind_speed,
+    humidity: daily[0].humidity,
+    dewPoint: daily[0].dew_point,
+    pressure: daily[0].pressure,
+    moonPhase: provideMoonPhaseByFraction(daily[0].moon_phase),
+    moonrise: convertTimestampToDate(daily[0].moonrise, 'time'),
+    moonset: convertTimestampToDate(daily[0].moonset, 'time'),
     name
   }
 
@@ -130,7 +137,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     props: {
       currentWeather,
       todayDetails,
-      dailyForecast,
+      hourlyForecast,
       name
     }
   }

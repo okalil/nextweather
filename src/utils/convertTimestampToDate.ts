@@ -3,7 +3,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 export function convertTimestampToDate(
   timestamp: number,
-  type: 'hours' | 'time' | 'date'
+  type: 'hours' | 'time' | 'date' | 'weekDay'
 ) {
   const date = new Date(timestamp * 1000)
   const result = {
@@ -12,6 +12,9 @@ export function convertTimestampToDate(
       .map(unit => String(unit).padStart(2, '0'))
       .join(':'),
     date: format(date, 'iiiiii, dd', {
+      locale: ptBR
+    }),
+    weekDay: format(date, 'iii', {
       locale: ptBR
     })
   }

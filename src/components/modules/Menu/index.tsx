@@ -9,20 +9,19 @@ const UnitSwitch = dynamic(() =>
 )
 
 const Menu = () => {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <MenuContainer>
       <MenuHeader>
-        <button onClick={() => setOpen(!open)}>
-          <img src={open ? '/close.svg' : '/burger.svg'} alt="Menu" />
+        <button onClick={() => setIsOpen(!isOpen)}>
+          <img src={isOpen ? '/close.svg' : '/burger.svg'} alt="Menu" />
         </button>
       </MenuHeader>
-      {open && (
-        <MenuContent>
-          <UnitSwitch />
-        </MenuContent>
-      )}
+
+      <MenuContent style={{ display: isOpen ? 'block' : 'none' }}>
+        <UnitSwitch />
+      </MenuContent>
     </MenuContainer>
   )
 }

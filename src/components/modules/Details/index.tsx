@@ -1,44 +1,61 @@
 import React from 'react'
+
 import { useConversion } from '../../../hooks/useConversion'
 
-import { Card } from '../../elements/Card'
+import {
+  Container,
+  RiseSetContainer,
+  LightContainer,
+  TimesContainer,
+  TimeIcon,
+  MoonIcon,
+  Condition,
+  SunProgress
+} from './styles'
 
-import { Upside, Sun, SunTimes, Condition } from './styles'
-
-type Details = {
+type DetailsProps = {
   feelsLike: number
   sunrise: number
   sunset: number
-  todayMax: number
-  todayMin: number
+  tempMax: number
+  tempMin: number
   wind: number
   humidity: number
   dewPoint: number
   pressure: number
   visibility: number
-  moonPhase: number
+  moonPhase: string[]
+  moonrise: number
+  moonset: number
+  progress: number
   name: string
 }
 
 export function Details({
-  feelsLike,
   sunrise,
   sunset,
-  todayMax,
-  todayMin,
+  tempMax,
+  tempMin,
   wind,
   humidity,
   dewPoint,
   pressure,
-  visibility,
   moonPhase,
+  moonrise,
+  moonset,
+  progress,
   name
-}: Details) {
+}: DetailsProps) {
+  const sunProgressStyle = {
+    background: `linear-gradient(0deg, white 50%, transparent 50%),
+      linear-gradient(${3.6 * progress}deg, #e97e45 50%, lightgray 50%)`
+  }
+
   const details = [
     {
       condition: 'Temperatura',
-      value: `${useConversion(todayMax, 'temp')}/${useConversion(
-        todayMin,
+      value: `${useConversion(tempMax, 'temp')}/${useConversion(
+        tempMin,
         'temp'
       )}`,
       src: '/thermometer.svg'
@@ -54,64 +71,69 @@ export function Details({
       src: '/humidity.svg'
     },
     {
-      condition: 'Ponto de orvalho',
-      value: useConversion(dewPoint, 'temp'),
-      src: '/dew-point.svg'
-    },
-    {
       condition: 'Pressão',
       value: useConversion(pressure, 'pressure'),
       src: '/gauge.svg'
     },
     {
-      condition: 'Visibilidade',
-      value: useConversion(visibility, 'length'),
-      src: '/eye.svg'
-    },
-    {
-      condition: 'Fase da Lua',
-      value: moonPhase,
-      src: '/first-quarter.svg'
+      condition: 'Ponto de orvalho',
+      value: useConversion(dewPoint, 'temp'),
+      src: '/dew-point.svg'
     }
   ]
 
   return (
-    <Card>
+    <Container>
       <h2>O clima em {name} hoje</h2>
-      <Upside>
-        <div>
-          <span>{useConversion(feelsLike, 'temp')}</span>
-          <p>Sensação térmica</p>
-        </div>
 
-        <div>
-          <Sun>
-            <img src="/sun-icon.svg" alt="Ícone do Sol" />
-          </Sun>
-
-          <SunTimes>
-            <div>
-              <img src="/sunrise.svg" alt="Alvorada" />
-              <p>{sunrise}</p>
-            </div>
-            <div>
-              <img src="/sunset.svg" alt="Crepúsculo" />
-              <p>{sunset}</p>
-            </div>
-          </SunTimes>
-        </div>
-      </Upside>
       <ul>
         {details.map((element, i) => {
           return (
             <Condition key={i}>
-              <img src={element.src} alt="Condição atual" />
-              <p>{element.condition}</p>
+              <p>
+                <img src={element.src} alt="Condição atual" />
+                {element.condition}
+              </p>
               <span>{element.value}</span>
             </Condition>
           )
         })}
       </ul>
-    </Card>
+
+      <RiseSetContainer>
+        <LightContainer>
+          <strong>Sol</strong>
+          <SunProgress style={sunProgressStyle} />
+
+          <TimesContainer>
+            <TimeIcon>
+              <img src="/sunrise.svg" alt="Alvorada" />
+              {sunrise}
+            </TimeIcon>
+            <TimeIcon>
+              <img src="/sunset.svg" alt="Crepúsculo" />
+              {sunset}
+            </TimeIcon>
+          </TimesContainer>
+        </LightContainer>
+
+        <LightContainer>
+          <strong>Lua</strong>
+          <MoonIcon src={moonPhase[1]} />
+          <p>{moonPhase[0]}</p>
+
+          <TimesContainer>
+            <TimeIcon>
+              <img src="/moonrise.svg" alt="Moonrise" />
+              {moonrise}
+            </TimeIcon>
+            <TimeIcon>
+              <img src="/moonset.svg" alt="Moonset" />
+              {moonset}
+            </TimeIcon>
+          </TimesContainer>
+        </LightContainer>
+      </RiseSetContainer>
+    </Container>
   )
 }

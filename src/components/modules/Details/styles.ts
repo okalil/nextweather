@@ -1,64 +1,85 @@
-import styled, { css } from 'styled-components'
+import { Card } from '../../elements/Card'
+import styled from 'styled-components'
 
-const flex = css`
+const Container = styled(Card)`
   display: flex;
-`
-
-const Upside = styled.div`
-  ${flex}
-  justify-content: space-between;
-  margin: 0.5rem;
-
-  span {
-    line-height: 3.5rem;
-    font-size: 3.5rem;
-    font-weight: 600;
-  }
-`
-const Sun = styled.div`
-  width: 110px;
-  height: 55px;
-  background-image: url('/sun-path.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin: 0 auto 0.5rem;
-
-  img {
-    width: 30px;
-    height: 30px;
-    transform: translate(5px, 0px);
-  }
-`
-
-const SunTimes = styled.div`
-  ${flex}
-
-  div {
-    ${flex}
-    justify-content: center;
-  }
-
-  img {
-    width: 30px;
-  }
+  flex-direction: column;
+  gap: 0.5rem;
 `
 
 const Condition = styled.li`
-  ${flex}
+  display: flex;
   justify-content: space-between;
 
   list-style: none;
-  border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
   padding: 0.75rem 0.25rem;
 
-  img {
-    width: 20px;
-  }
-
   p {
-    flex-grow: 1;
-    padding-left: 1rem;
+    display: flex;
+    gap: 1rem;
+    img {
+      width: 20px;
+    }
   }
 `
 
-export { Upside, Sun, SunTimes, Condition }
+const SunProgress = styled.span`
+  height: 100px;
+  width: 100px;
+  margin: 1rem 0 calc(-50px + 1rem);
+  border-radius: 50%;
+
+  &::before {
+    content: '';
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, transparent 50%, white 50%);
+    border-radius: 50%;
+    transform: scale(0.9);
+  }
+`
+
+const MoonIcon = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-top: 1rem;
+`
+
+const TimesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const TimeIcon = styled.span`
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 30px;
+  }
+`
+
+const LightContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+`
+
+const RiseSetContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export {
+  Container,
+  RiseSetContainer,
+  LightContainer,
+  TimesContainer,
+  TimeIcon,
+  SunProgress,
+  MoonIcon,
+  Condition
+}
