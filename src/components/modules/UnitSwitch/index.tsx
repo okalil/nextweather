@@ -12,7 +12,7 @@ const UnitSwitch = () => {
 
   const metric = units == 'metric'
   const active = { background: '#368ca9', fontWeight: 600 }
-  const inactive = { background: '#72aec3', fontWeight: 500 }
+  const inactive = { background: '#72aec3', fontWeight: 500, cursor: 'pointer' }
 
   return (
     <Container>

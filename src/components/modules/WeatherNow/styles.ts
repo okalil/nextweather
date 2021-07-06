@@ -11,7 +11,7 @@ const Container = styled(Card)`
 
   ${flex}
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.5em;
 `
 const UpsideConditions = styled.div`
   ${flex}
@@ -20,8 +20,8 @@ const UpsideConditions = styled.div`
 
 const Temperature = styled.div`
   > span {
-    line-height: 3.5rem;
-    font-size: 3.5rem;
+    line-height: 1em;
+    font-size: 3.5em;
     font-weight: 500;
   }
 
@@ -34,8 +34,8 @@ const Weather = styled.div`
   text-align: right;
 
   img {
-    width: 75px;
-    margin: -10px 0 -16px;
+    width: 4.65em;
+    margin: -0.75em 0;
   }
 
   p {
@@ -60,13 +60,20 @@ const Button = styled.button`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.textSecondary};
   background: ${({ theme }) => theme.colors.textTertiary};
-  box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.colors.generalBackground};
+  box-shadow: 0px 0px 3px 1px ${({ theme }) => theme.colors.generalBackground};
   border: 0;
   border-radius: 10px;
   padding: 0.5rem;
 
   display: block;
   margin: 0 auto;
+
+  cursor: pointer;
+  transition: filter 0.3s;
+
+  &:hover {
+    filter: opacity(0.85);
+  }
 `
 
 const ButtonItem = styled.li`
@@ -87,6 +94,15 @@ const ShowDetails = styled.div`
   img {
     width: 27px;
     height: 27px;
+  }
+  p,
+  img {
+    cursor: pointer;
+    transition: filter 0.3s;
+
+    &:hover {
+      filter: opacity(0.85);
+    }
   }
 `
 

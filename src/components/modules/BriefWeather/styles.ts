@@ -3,7 +3,7 @@ import { Card } from '../../elements/Card'
 
 const Container = styled(Card)`
   display: flex;
-  gap: 1rem;
+  gap: 1em;
 
   p {
     font-weight: 600;
@@ -12,8 +12,8 @@ const Container = styled(Card)`
 
 const Weather = styled.div`
   img {
-    width: 55px;
-    margin-top: -10px;
+    width: 3.5em;
+    margin-top: -0.625em;
   }
 
   p {
@@ -23,7 +23,7 @@ const Weather = styled.div`
 `
 
 const Conditions = styled.ul`
-  flex: 3;
+  flex: 1;
 `
 
 const Condition = styled.li`
@@ -38,21 +38,21 @@ const Condition = styled.li`
     display: flex;
     align-items: center;
 
-    font-size: 0.95rem;
+    font-size: 0.925em;
     text-transform: uppercase;
   }
 
   &:first-child {
     border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
     img {
-      height: 20px;
-      width: 20px;
+      height: 1.25em;
+      width: 1.25em;
     }
   }
 
   &:last-child img {
-    height: 15px;
-    width: 20px;
+    height: 1em;
+    width: 1.25em;
   }
 `
 

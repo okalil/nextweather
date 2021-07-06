@@ -8,6 +8,7 @@ import {
   LightContainer,
   TimesContainer,
   TimeIcon,
+  MoonPhase,
   MoonIcon,
   Condition,
   SunProgress
@@ -119,8 +120,11 @@ export function Details({
 
         <LightContainer>
           <strong>Lua</strong>
-          <MoonIcon src={moonPhase[1]} />
-          <p>{moonPhase[0]}</p>
+
+          <MoonPhase>
+            <MoonIcon src={moonPhase[1]} />
+            {moonPhase[0]}
+          </MoonPhase>
 
           <TimesContainer>
             <TimeIcon>

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   background: #72aec3;
+  border: 1px solid #f2f2f2;
   border-radius: 10px;
 
   button {

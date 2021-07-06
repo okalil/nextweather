@@ -1,16 +1,29 @@
 import React from 'react'
+import { useMediaQuery } from '../../../hooks/useMediaQuery'
 
 import { SearchBox } from '../Searchbox'
+import { UnitSwitch } from '../UnitSwitch'
 
-import { Container } from './styles'
+import { Wrapper, Container, SubContainer, Logo } from './styles'
 
 const Header = () => {
   return (
-    <Container>
-      <img src="/weather-logo.svg" alt="Logo" />
+    <Wrapper>
+      <Container>
+        <SubContainer>
+          <Logo src="/weather-logo.svg" alt="Logo" />
+          {useMediaQuery('(min-width: 768px)') && <h1>Next Weather</h1>}
+        </SubContainer>
 
-      <SearchBox />
-    </Container>
+        <SearchBox />
+
+        {useMediaQuery('(min-width: 768px') && (
+          <SubContainer>
+            <UnitSwitch />
+          </SubContainer>
+        )}
+      </Container>
+    </Wrapper>
   )
 }
 

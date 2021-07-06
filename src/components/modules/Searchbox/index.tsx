@@ -1,5 +1,5 @@
+import React, { FormEvent, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import React, { FormEvent, useContext, useState } from 'react'
 
 import { Form, Input } from './styles'
 
@@ -15,7 +15,7 @@ const SearchBox = () => {
   return (
     <Form onSubmit={searchCity}>
       <Input
-        placeholder="Buscar..."
+        placeholder="Buscar cidade..."
         onChange={event => setCity(event.target.value)}
         value={city}
       />

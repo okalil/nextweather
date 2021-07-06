@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled(Card)`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.5em;
 `
 
 const Condition = styled.li`
@@ -13,21 +13,21 @@ const Condition = styled.li`
 
   list-style: none;
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
-  padding: 0.75rem 0.25rem;
+  padding: 0.75em 0.25em;
 
   p {
     display: flex;
-    gap: 1rem;
+    gap: 1em;
     img {
-      width: 20px;
+      width: 1.25em;
     }
   }
 `
 
 const SunProgress = styled.span`
-  height: 100px;
-  width: 100px;
-  margin: 1rem 0 calc(-50px + 1rem);
+  height: 6.25em;
+  width: 6.25em;
+  margin: 1.25rem 0 calc(-50px + 1.25rem);
   border-radius: 50%;
 
   &::before {
@@ -35,16 +35,21 @@ const SunProgress = styled.span`
     display: inline-flex;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, transparent 50%, white 50%);
+    background: linear-gradient(0deg, transparent 49%, white 49%);
     border-radius: 50%;
     transform: scale(0.9);
   }
 `
 
+const MoonPhase = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+`
+
 const MoonIcon = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-top: 1rem;
+  width: 3em;
+  height: 3em;
 `
 
 const TimesContainer = styled.div`
@@ -57,7 +62,7 @@ const TimeIcon = styled.span`
   align-items: center;
 
   img {
-    width: 30px;
+    width: 1.85em;
   }
 `
 
@@ -80,6 +85,7 @@ export {
   TimesContainer,
   TimeIcon,
   SunProgress,
+  MoonPhase,
   MoonIcon,
   Condition
 }

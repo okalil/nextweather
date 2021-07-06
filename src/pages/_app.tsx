@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppProps } from 'next/app'
 
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import { ThemeProvider } from 'styled-components'
 import { UnitContextProvider } from '../contexts/UnitContext'
 
@@ -15,7 +16,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     <ThemeProvider theme={theme}>
       <UnitContextProvider>
         <Header />
-        <Menu />
+        {!useMediaQuery('(min-width: 768px)') && <Menu />}
+
         <Component {...pageProps} />
         <GlobalStyle />
       </UnitContextProvider>
