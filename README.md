@@ -1,34 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center"><img src="./.github/logo.svg" width="250px"></p>
 
-## Getting Started
+<h1 align="center">NextWeather</h1>
 
-First, run the development server:
+<p align="center">NextWeather is a website for weather information.</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**Table of Contents**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Overview](#Overview)
+- [Visão geral](#Visão-geral)
+  - [Sobre](#Sobre)
+  - [Layout](#Layout)
+- [Tecnologias](#Tecnologias)
+- [Instalação](#Instalação)
+  - [Pré-requisitos](#Pré-requisitos)
+  - [Como executar](#Como-executar)
+- [Autor](#Autor)
+- [Licença](#Licença)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# Visão geral
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Sobre
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+O NextWeather é uma aplicação web que exibe informações sobre o clima de diferentes cidades do mundo. Tempo atual detalhado e previsão para os próximos dias e, é claro, é possível alternar entre os sistemas de medidas métrico e imperial.
 
-## Learn More
+Fonte dos dados:
+- [Mapbox](https://www.mapbox.com/)
+- [OpenWeatherMap](https://openweathermap.org/api)
 
-To learn more about Next.js, take a look at the following resources:
+## Layout
+**Layout completo**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Desktop](.github/nextweather-desktop.png)
+- [Laptop](.github/nextweather-laptop.png)
+- [Tablet](.github/nextweather-ipad.png)
+- [Smartphone](.github/nextweather-smartphone.png)
+- [Dark theme](.github/nextweather-dark.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Tecnologias
 
-## Deploy on Vercel
+The app was built with the following technologies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **[React.js](https://reactjs.org/)**
+- **[Next.js](https://nextjs.org/)**
+- **[Node.js](https://nodejs.org/en/)**
+- **[Styled Components](https://styled-components.com/)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Instalação
+
+## Pré-requisitos
+
+- Node.js LTS
+- Editor de código (VS Code, Vim, etc.)
+
+## Como executar
+
+**Clone esse repositório:**
+
+`git clone https://github.com/okalil/NextWeathernext.git`
+
+**Acesse o diretório do projeto e instale as dependências:**
+
+`cd NextWeathernext`
+
+`yarn` or `npm install`
+
+**Execute o servidor de desenvolvimento:**
+
+`yarn dev` or `npm run dev`
+
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
+
+# Autor
+
+<img src="https://avatars.githubusercontent.com/u/81531887?s=400&u=a439512ac119194b1be5be5f0e95279250e7fd53&v=4" width="150" style="border-radius:100%"/>
+
+**Andrew Kalil**
+
+<a href="https://www.linkedin.com/in/andrew-magalh%C3%A3es-2b3781210">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+
+Feito com dedicação por Andrew Kalil!
+
+# Licença
+
+Este projeto está licenciado sob a Licença MIT - Olhe o arquivo LICENSE para mais detalhes.
