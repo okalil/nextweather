@@ -1,17 +1,25 @@
 import React from 'react'
-import Document, { DocumentContext, DocumentInitialProps, Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  DocumentContext,
+  DocumentInitialProps,
+  Html,
+  Head,
+  Main,
+  NextScript
+} from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
         })
 
       const initialProps = await Document.getInitialProps(ctx)
@@ -22,7 +30,7 @@ export default class MyDocument extends Document {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        ),
+        )
       }
     } finally {
       sheet.seal()
@@ -41,6 +49,14 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/weather.png" type="image/png" />
         </Head>
         <body>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `function getUserPreference() {
+              if(window.localStorage.getItem('theme')) {return window.localStorage.getItem('theme')}
+              return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'};
+              document.body.dataset.theme = getUserPreference()`
+            }}
+          />
           <Main />
           <NextScript />
         </body>

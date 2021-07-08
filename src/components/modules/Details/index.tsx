@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 
 import { useConversion } from '../../../hooks/useConversion'
 
@@ -47,8 +48,11 @@ export function Details({
   progress,
   name
 }: DetailsProps) {
+  const { colors } = useContext(ThemeContext)
   const sunProgressStyle = {
-    background: `linear-gradient(0deg, white 50%, transparent 50%),
+    background: `linear-gradient(0deg, ${
+      colors.generalCardBackground
+    } 50%, transparent 50%),
       linear-gradient(${3.6 * progress}deg, #e97e45 50%, lightgray 50%)`
   }
 

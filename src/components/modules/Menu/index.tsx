@@ -1,14 +1,15 @@
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 
-import { useState } from 'react'
+import { UnitSwitch } from '../UnitSwitch'
 
 import { MenuContainer, MenuHeader, MenuContent } from './styles'
 
-const UnitSwitch = dynamic(() =>
-  import('../UnitSwitch').then(mod => mod.UnitSwitch)
-)
-
 const Menu = () => {
+  const ThemeSwitch = dynamic(() =>
+    import('../ThemeSwitch').then(mod => mod.ThemeSwitch)
+  )
+
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -19,8 +20,9 @@ const Menu = () => {
         </button>
       </MenuHeader>
 
-      <MenuContent style={{ display: isOpen ? 'block' : 'none' }}>
+      <MenuContent style={{ display: isOpen ? 'flex' : 'none' }}>
         <UnitSwitch />
+        <ThemeSwitch />
       </MenuContent>
     </MenuContainer>
   )

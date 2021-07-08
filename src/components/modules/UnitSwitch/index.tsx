@@ -1,9 +1,11 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { ThemeContext } from 'styled-components'
 import { useUnit } from '../../../hooks/useUnit'
 
 import { Container } from './styles'
 
 const UnitSwitch = () => {
+  const { colors } = useContext(ThemeContext)
   const { units, setUnits } = useUnit()
 
   useEffect(() => {
@@ -11,8 +13,8 @@ const UnitSwitch = () => {
   }, [])
 
   const metric = units == 'metric'
-  const active = { background: '#368ca9', fontWeight: 600 }
-  const inactive = { background: '#72aec3', fontWeight: 500, cursor: 'pointer' }
+  const active = { background: colors.headerBackground, fontWeight: 600 }
+  const inactive = { background: colors.buttonInactive, fontWeight: 500, cursor: 'pointer' }
 
   return (
     <Container>

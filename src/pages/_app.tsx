@@ -8,8 +8,8 @@ import { UnitContextProvider } from '../contexts/UnitContext'
 import Header from '../components/modules/Header'
 import Menu from '../components/modules/Menu'
 
+import theme from '../styles/theme'
 import GlobalStyle from '../styles/global'
-import theme from '../styles/themes/light'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (

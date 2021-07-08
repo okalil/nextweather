@@ -47,6 +47,7 @@ const Condition = styled.li`
     img {
       height: 1.25em;
       width: 1.25em;
+      filter: ${({ theme }) => theme.filters.invert};
     }
   }
 

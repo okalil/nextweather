@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  background: #72aec3;
+  background: ${({ theme }) => theme.colors.buttonInactive};
   border: 1px solid #f2f2f2;
   border-radius: 10px;
 
@@ -11,7 +11,6 @@ const Container = styled.div`
     color: ${({ theme }) => theme.colors.textSecondary};
     border: 0;
     border-radius: 8px;
-    transition: 0.3s;
   }
 `
 
