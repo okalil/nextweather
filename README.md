@@ -24,10 +24,12 @@
 O NextWeather é uma aplicação web que exibe informações sobre o clima de diferentes cidades do mundo. Tempo atual detalhado e previsão para os próximos dias e, é claro, é possível alternar entre os sistemas de medidas métrico e imperial.
 
 Fonte dos dados:
+
 - [Mapbox](https://www.mapbox.com/)
 - [OpenWeatherMap](https://openweathermap.org/api)
 
 ## Layout
+
 **Layout completo**
 
 - [Desktop](.github/nextweather-desktop.png)
@@ -56,11 +58,11 @@ The app was built with the following technologies:
 
 **Clone esse repositório:**
 
-`git clone https://github.com/okalil/NextWeathernext.git`
+`git clone https://github.com/okalil/nextweather-app.git`
 
 **Acesse o diretório do projeto e instale as dependências:**
 
-`cd NextWeathernext`
+`cd nextweather-app`
 
 `yarn` or `npm install`
 
